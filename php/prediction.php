@@ -7,42 +7,41 @@ if (isset($_GET['cluster'])) {
     exit;
 }
 if (isset($_GET['type'])) {
-    // Lire les données JSON envoyées
-    $data = json_decode(file_get_contents('php://input'), true);
-
-    if (!$data) {
+    // Récupération et validation des données
+    $required = ['Status', 'Length', 'Width', 'Draft', 'Heading'];
+    $data = json_decode(file_get_contents('php://input'), true) ?: [];
+    
+    // Vérification des champs requis
+    $missing = array_diff($required, array_keys($data));
+    if (!empty($missing)) {
         http_response_code(400);
-        echo json_encode(['error' => 'Données JSON invalides.']);
+        echo json_encode(['error' => 'Champs manquants: ' . implode(', ', $missing)]);
         exit;
     }
-
-    // Sécuriser les paramètres
-    $status = escapeshellarg($data['Status'] ?? '');
-    $length = escapeshellarg($data['Length'] ?? '');
-    $width = escapeshellarg($data['Width'] ?? '');
-    $draft = escapeshellarg($data['Draft'] ?? '');
-    $heading = escapeshellarg($data['Heading'] ?? '');
-
-    if (!$status || !$length || !$width || !$draft || !$heading) {
+    
+    // Vérification des valeurs vides
+    $empty = array_filter($data, function($value) { return $value === '' || $value === null; });
+    if (!empty($empty)) {
         http_response_code(400);
-        echo json_encode(['error' => 'Paramètres manquants.']);
+        echo json_encode(['error' => 'Les champs suivants ne peuvent pas être vides: ' . implode(', ', array_keys($empty))]);
         exit;
     }
-
-    // Appeler le script Python
-    $command = "python3 ../python/script_predict_vesseltype.py --Status $status --Length $length --Width $width --Draft $draft --Heading $heading";
-    $output = shell_exec($command . " 2>&1");  // ← redirige les erreurs vers la sortie standard
-
-
-    if ($output === null || trim($output) === '') {
-    http_response_code(500);
-    echo json_encode(['error' => "Erreur lors de l'exécution du script. Détail : $output"]);
-    exit;
-}
-
-
-    // Retour JSON
-    echo json_encode(['type' => trim($output)]);
+    
+    // Construction de la commande sécurisée
+    $args = array_map('escapeshellarg', array_intersect_key($data, array_flip($required)));
+    $command = sprintf(
+        'python3 ../python/script_predict_vesseltype.py --Status %s --Length %s --Width %s --Draft %s --Heading %s 2>&1',
+        ...array_values($args)
+    );
+    
+    // Exécution et vérification
+    if (($output = trim(shell_exec($command))) === '') {
+        http_response_code(500);
+        echo json_encode(['error' => 'Erreur lors de l\'exécution du script']);
+        exit;
+    }
+    
+    echo json_encode(['type' => $output]);
     exit;
 }
 
