@@ -279,3 +279,31 @@ tr.selected {
     }
 }
 
+.project-members {
+    text-align: center;
+    margin: 2em 0;
+}
+.members-list {
+    display: flex;
+    gap: 20px; /* espace entre les membres, ajuste si besoin */
+    justify-content: center;
+    align-items: center;
+}
+
+.member img {
+    width: 70px;      /* taille du cercle, ajuste à ta convenance */
+    height: 70px;
+    object-fit: cover; /* pour bien remplir le cercle */
+    border-radius: 50%; /* forme ronde */
+    border: 3px solid #fff; /* optionnel : bordure blanche */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* optionnel : ombre */
+    background: #eee; /* optionnel : fond de secours */
+    display: block;
+}
+.member {
+    width: 70px;
+    height: 70px;
+    background: #b8d6ec;
+    border-radius: 50%;
+    display: inline-block;
+}
