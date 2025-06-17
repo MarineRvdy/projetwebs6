@@ -128,13 +128,32 @@ function getStatusText(statusCode) {
         window.location.href = `prediction_cluster.php?mmsi=${selectedShipId}`;
     }
     
-    function predictType() {
-        if (!selectedShipId) {
-            alert('Veuillez sélectionner un navire');
-            return;
-        }
-        window.location.href = `prediction_type.php?mmsi=${selectedShipId}`;
+   function predictType() {
+    if (!selectedShipId) {
+        alert('Veuillez sélectionner un navire');
+        return;
     }
+
+    const ship = shipsData.find(s => s.mmsi === selectedShipId);
+    if (!ship) {
+        alert('Navire introuvable');
+        return;
+    }
+
+    // Encodage URL des paramètres pour prediction_type.php
+    const params = new URLSearchParams({
+        Status: ship.status,
+        Length: ship.Length,
+        Width: ship.Width,
+        Draft: ship.Draft || 0,
+        Heading: ship.cog || 0
+    });
+
+    window.location.href = `prediction_type.php?${params.toString()}`;
+}
+
+
+
     
     function predictTrajectory() {
         if (!selectedShipId) {
