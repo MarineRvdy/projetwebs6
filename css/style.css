@@ -1,0 +1,281 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    background: #f4f8fb;
+    color: #1a2733;
+}
+
+.navbar {
+    background: #1a2733;
+    padding: 0.5em 0;
+}
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.navbar li {
+    margin: 0 1em;
+}
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+.navbar a:hover {
+    background: #2d4059;
+}
+
+.background-img {
+    background-size: cover;
+    background-position: center;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.home-bg {
+    background-image: url('../img/port1.jpg');
+}
+.ajout-bg {
+    background-image: url('../img/port2.jpg');
+}
+.project-description, .form-container {
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    padding: 2em;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    max-width: 600px;
+    margin: 2em auto;
+}
+.project-members {
+    text-align: center;
+    margin: 2em 0;
+}
+.members-list {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+.member {
+    width: 70px;
+    height: 70px;
+    background: #b8d6ec;
+    border-radius: 50%;
+    display: inline-block;
+}
+.table-container, .prediction-container {
+    background: #fff;
+    border-radius: 12px;
+    margin: 2em auto;
+    padding: 2em;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    max-width: 1200px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2em;
+}
+thead {
+    background: #b8d6ec;
+}
+th, td {
+    padding: 0.5em;
+    border: 1px solid #d3e3ee;
+    text-align: center;
+}
+.btn-group button {
+    margin: 0 0.5em;
+    background: #1a2733;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-group button:hover {
+    background: #2d4059;
+}
+.footer {
+    background: #1a2733;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+}
+.back-to-top {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    background: #b8d6ec;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.back-to-top:hover {
+    background: #2d4059;
+    color: #fff;
+}
+
+
+/* Styles pour les marqueurs de navires */
+.ship-marker {
+    width: 20px;
+    height: 20px;
+    background-color: #346887;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.ship-marker:hover {
+    transform: scale(1.2);
+}
+
+/* Styles pour les lignes sélectionnées */
+#shipTable tr.table-primary {
+    background-color: #cfe2ff !important;
+}
+
+/* Styles pour les boutons */
+.btn-group .btn {
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .table-container {
+        max-height: 300px;
+    }
+    
+    #shipMap {
+        height: 400px;
+    }
+    
+    .btn-group .btn {
+        min-width: 100%;
+    }
+}
+
+.radio-column {
+    width: 40px;
+    text-align: center;
+}
+
+tr.selected {
+    background-color: #cfe2ff !important;
+}
+
+.ship-marker {
+    width: 20px;
+    height: 20px;
+    background-color: #346887;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.ship-marker:hover {
+    transform: scale(1.2);
+}
+
+
+/* Style pour la carte Plotly */
+#shipMap {
+    width: 100%;
+    height: 500px;
+    border-radius: 8px;
+}
+
+/* Style pour les infobulles */
+.mapboxgl-popup-content {
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Adaptation responsive */
+@media (max-width: 768px) {
+    #shipMap {
+        height: 400px;
+    }
+}
+
+
+
+/* Ajoutez ces règles à la fin de votre fichier CSS existant */
+
+/* Conteneur principal pour la page de visualisation */
+.visualization-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Style pour la section carte */
+.map-card {
+    flex: 2;
+    min-width: 300px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 1em;
+}
+
+/* Style pour la section tableau */
+.table-card {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 1em;
+}
+
+/* Ajustements pour la carte Plotly */
+#shipMap {
+    width: 100%;
+    height: 600px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
+
+/* Adaptation responsive */
+@media (max-width: 992px) {
+    .map-card, .table-card {
+        flex: 1 0 100%;
+    }
+    
+    #shipMap {
+        height: 450px;
+    }
+}
+
+@media (max-width: 576px) {
+    #shipMap {
+        height: 350px;
+    }
+}
+
