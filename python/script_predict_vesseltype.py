@@ -7,8 +7,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Chemins vers les modèles sauvegardés, basés sur ce dossier
-MODEL_PATH = os.path.join(BASE_DIR, 'rf_vessel_type_classifier.pkl')
-PREPROCESSOR_PATH = os.path.join(BASE_DIR, 'preprocessor_vessel_type.pkl')
+MODEL_PATH = os.path.join(BASE_DIR, '../ressources_calcul/rf_vessel_type_classifier.pkl')
+PREPROCESSOR_PATH = os.path.join(BASE_DIR, '../ressources_calcul/preprocessor_vessel_type.pkl')
 
 # Liste des features attendues
 FEATURES = ['Status', 'Length', 'Width', 'Draft', 'Heading']
