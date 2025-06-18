@@ -21,8 +21,7 @@ try {
             COALESCE(d.Length, c.Length) AS Length,
             COALESCE(d.Width, c.Width) AS Width,
             c.VesselType,
-            d.Draft,
-            d.Cargo
+            d.Draft
         FROM (
             SELECT mmsi, MAX(BaseDateTime) AS last_update 
             FROM (

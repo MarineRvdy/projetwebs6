@@ -138,13 +138,12 @@ async function loadTrajectories() {
                     color: getColor(mmsi), 
                     weight: 3 
                 }).addTo(state.leafletMap);
-                
-                const last = points[points.length - 1];
+
                 
                 line.bindPopup(`
                     <div class="ship-popup">
                         <div><strong>MMSI :</strong> ${mmsi}</div>
-                        <div><strong>Nom :</strong> ${last.vesselName || 'Inconnu'}</div>
+                        <div><strong>Nom :</strong> ${ship.vesselName || 'Inconnu'}</div>
                         <div><strong>Longueur :</strong> ${ship ? formatNumber(ship.Length, 1) + 'm' : 'N/A'}</div>
                         <div><strong>Largeur :</strong> ${ship ? formatNumber(ship.Width, 1) + 'm' : 'N/A'}</div>
                         <div><strong>Tirant d'eau :</strong> ${ship ? formatNumber(ship.Draft, 1) + 'm' : 'N/A'}</div>
